@@ -4,6 +4,11 @@ import {
   TextField,
   ReferenceField,
   EditButton,
+  Edit,
+  Create,
+  SimpleForm,
+  ReferenceInput,
+  TextInput,
 } from "react-admin";
 
 export const PostList = () => (
@@ -19,11 +24,22 @@ export const PostList = () => (
 
 export const PostEdit = () => (
   <Edit>
+    {/* SimpleForm expects input components as children */}
     <SimpleForm>
+      <TextInput source="id" disabled />
       <ReferenceInput source="userId" reference="users" />
-      <TextInput source="id" />
       <TextInput source="title" />
-      <TextInput source="body" />
+      <TextInput source="body" multiline rows={5} />
     </SimpleForm>
   </Edit>
+);
+
+export const PostCreate = () => (
+  <Create>
+    <SimpleForm>
+      <ReferenceInput source="userId" reference="users" />
+      <TextInput source="title" />
+      <TextInput source="body" multiline rows={5} />
+    </SimpleForm>
+  </Create>
 );
